@@ -1,0 +1,39 @@
+version: '2.0'
+
+
+services:
+  app: 
+    container_name: app
+    image: pppatil/gbcnodejsdocker
+    ports:
+     - 9000:80
+    volumes:
+     - ./shared:/usr/src/shared/
+    networks:
+     - gbc-network
+  
+
+  mongo:
+    container_name: mongo
+    image: bitnami/mongodb
+    environment:
+      - MONGODB_USERNAME=dbadmin
+      - MONGODB_PASSWORD=adminpw
+      - MONGODB_ROOT_PASSWORD=adminpw
+      - MONGODB_DATABASE=mydb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/bitnami/mongodb/
+    networks:
+      - gbc-network
+
+
+volumes:
+ mongodb:
+
+
+networks:
+  gbc-network:
+    #driver: bridge
+    external: true

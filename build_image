@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+BASE_IMAGE_NAME=pppatil/basenode
+IMAGE_NAME=pppatil/gbcnodejsdocker
+
+
+echo "######## Building base image ########"
+
+### Docker image build script ####
+docker build -t ${BASE_IMAGE_NAME} -f ./Dockerfile.base . 
+echo "######## Base image built ########"
+
+echo "######## Building app image ########"
+docker build -t ${IMAGE_NAME}  . 
+
+
+
+#docker push $IMAGE_NAME

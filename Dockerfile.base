@@ -1,0 +1,26 @@
+FROM ubuntu:22.04 
+
+EXPOSE 80 443
+
+WORKDIR /
+
+RUN apt-get update && apt-get install -y
+
+RUN apt-get install -y nodejs npm curl
+
+RUN npm cache clean -f 
+
+RUN npm install -g n
+
+RUN n stable
+
+RUN node -v 
+
+WORKDIR /usr/src/app/
+
+
+ENTRYPOINT npm start  
+
+CMD npm start 
+
+
